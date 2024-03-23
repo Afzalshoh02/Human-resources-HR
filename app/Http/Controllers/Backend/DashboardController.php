@@ -8,6 +8,6 @@ class DashboardController extends Controller
 {
     public function dashboard()
     {
-        return 'login';
+        return view('backend.dashboard.list');
     }
 }

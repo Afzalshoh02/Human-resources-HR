@@ -65,4 +65,10 @@ class AuthController extends Controller
             return redirect()->back()->with('error', "Please inter the correct credentials");
         }
     }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect(url('/'));
+    }
 }
