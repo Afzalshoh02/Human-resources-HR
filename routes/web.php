@@ -29,5 +29,8 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('admin/employees', [EmployeesController::class, 'index']);
     Route::get('admin/employees/add', [EmployeesController::class, 'add']);
     Route::post('admin/employees/add', [EmployeesController::class, 'add_post']);
+    Route::get('admin/employees/view/{id}', [EmployeesController::class, 'view']);
+    Route::get('admin/employees/edit/{id}', [EmployeesController::class, 'edit']);
+    Route::post('admin/employees/edit/{id}', [EmployeesController::class, 'edit_update']);
 });
 Route::get('logout', [AuthController::class, 'logout']);

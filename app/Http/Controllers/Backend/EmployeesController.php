@@ -10,7 +10,8 @@ class EmployeesController extends Controller
 {
     public function index()
     {
-        return view('backend.employees.list');
+        $data['getRecord'] = User::getRecord();
+        return view('backend.employees.list', $data);
     }
 
     public function add(Request $request)
@@ -43,5 +44,38 @@ class EmployeesController extends Controller
         $user->is_role = 0; //0 - Employees
         $user->save();
         return redirect('admin/employees')->with('success', "Employees successfully register.");
+    }
+
+    public function view($id)
+    {
+        $data['getRecord'] = User::find($id);
+        return view('backend.employees.view', $data);
+    }
+
+    public function edit($id)
+    {
+        $data['getRecord'] = User::find($id);
+        return view('backend.employees.edit', $data);
+    }
+
+    public function edit_update($id, Request $request)
+    {
+        $user = $request->validate([
+            'email' => ['required', 'unique:users,email,'.$id]
+        ]);
+        $user = User::find($id);
+        $user->name = trim($request->name);
+        $user->last_name = trim($request->last_name);
+        $user->email = trim($request->email);
+        $user->phone_number = trim($request->phone_number);
+        $user->hire_date = trim($request->hire_date);
+        $user->job_id = trim($request->job_id);
+        $user->salary = trim($request->salary);
+        $user->commission_pct = trim($request->commission_pct);
+        $user->manager_id = trim($request->manager_id);
+        $user->department_id = trim($request->department_id);
+        $user->is_role = 0; //0 - Employees
+        $user->save();
+        return redirect('admin/employees')->with('success', "Employees successfully Updated.");
     }
 }
