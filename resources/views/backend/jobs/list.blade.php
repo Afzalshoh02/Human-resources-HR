@@ -6,10 +6,10 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Employees</h1>
+                        <h1>Jobs</h1>
                     </div>
                     <div class="col-sm-6" style="text-align: right">
-                        <a href="{{ url('admin/employees/add') }}" class="btn btn-primary">Add Employees</a>
+                        <a href="{{ url('admin/jobs/add') }}" class="btn btn-primary">Add Jobs</a>
                     </div>
                 </div>
             </div>
@@ -21,7 +21,7 @@
                     <section class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Search Employees</h3>
+                                <h3 class="card-title">Search Jobs</h3>
                             </div>
                             <form method="get" action="">
                                 <div class="card-body">
@@ -33,25 +33,25 @@
                                         </div>
 
                                         <div class="form-group col-sm-3">
-                                            <label>First Name</label>
-                                            <input type="text" name="name" class="form-control" value="{{ Request()->name }}" placeholder="First Name">
+                                            <label>Job Title</label>
+                                            <input type="text" name="job_title" class="form-control" value="{{ Request()->job_title }}" placeholder="Job Title">
                                         </div>
 
                                         <div class="form-group col-sm-3">
-                                            <label>Last Name</label>
-                                            <input type="text" name="last_name" class="form-control" value="{{ Request()->last_name }}" placeholder="Last Name">
+                                            <label>Min Salary</label>
+                                            <input type="text" name="min_salary" class="form-control" value="{{ Request()->min_salary }}" placeholder="Min Salary">
                                         </div>
 
                                         <div class="form-group col-sm-3">
-                                            <label>Email ID</label>
-                                            <input type="email" name="email" class="form-control" value="{{ Request()->email }}" placeholder="Email ID">
+                                            <label>Max Salary</label>
+                                            <input type="text" name="max_salary" class="form-control" value="{{ Request()->max_salary }}" placeholder="Max Salary">
                                         </div>
 
                                         <div class="form-group col-md-2">
                                             <button class="btn btn-primary" type="submit"
-                                            style="margin-top: 30px;">Search</button>
-                                            <a href="{{ url('admin/employees') }}" class="btn btn-success"
-                                            style="margin-top: 30px;">Reset</a>
+                                                    style="margin-top: 30px;">Search</button>
+                                            <a href="{{ url('admin/jobs') }}" class="btn btn-success"
+                                               style="margin-top: 30px;">Reset</a>
                                         </div>
 
                                     </div>
@@ -62,44 +62,44 @@
 
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Employees List</h3>
+                                <h3 class="card-title">Jobs List</h3>
                             </div>
 
                             <div class="card-body p-0">
                                 <table class="table table-striped">
-                                   <thead>
-                                       <tr>
-                                           <td>ID</td>
-                                           <td>First Name</td>
-                                           <td>Last Name</td>
-                                           <td>Email</td>
-                                           <td>Is Role</td>
-                                           <td>Action</td>
-                                       </tr>
-                                   </thead>
+                                    <thead>
+                                    <tr>
+                                        <td>ID</td>
+                                        <td>Job Title</td>
+                                        <td>Min Salary</td>
+                                        <td>Max Salary</td>
+                                        <td>Created At</td>
+                                        <td>Action</td>
+                                    </tr>
+                                    </thead>
                                     <tbody>
-                                    @forelse($getRecord as $value)
+
                                         <tr>
-                                            <td>{{ $value->id }}</td>
-                                            <td>{{ $value->name }}</td>
-                                            <td>{{ $value->last_name }}</td>
-                                            <td>{{ $value->email }}</td>
-                                            <td>{{ !empty($value->is_role) ? "HR" : "Employees" }}</td>
+                                            <td>1</td>
+                                            <td>Title</td>
+                                            <td>Title</td>
+                                            <td>200</td>
+                                            <td>300</td>
+                                            <td>2024</td>
                                             <td>
-                                                <a href="{{ url('admin/employees/view/'.$value->id) }}" class="btn btn-info">View</a>
-                                                <a href="{{ url('admin/employees/edit/'.$value->id) }}" class="btn btn-primary">Edit</a>
-                                                <a href="{{ url('admin/employees/delete/'.$value->id) }}" onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger">Delete</a>
+                                                <a href="" class="btn btn-info">View</a>
+                                                <a href="" class="btn btn-primary">Edit</a>
+                                                <a href="" onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger">Delete</a>
                                             </td>
                                         </tr>
-                                    @empty
+
                                         <tr>
                                             <td colspan="100%">No Record Found.</td>
                                         </tr>
-                                    @endforelse
+
                                     </tbody>
                                 </table>
                                 <div style="padding: 10px; float: right">
-                                    {!! $getRecord->appends(\Illuminate\Support\Facades\Request::except('page'))->links() !!}
                                 </div>
                             </div>
                         </div>
