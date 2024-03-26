@@ -74,7 +74,7 @@
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Job ID <span style="color: red;"> </span></label>
                                         <div class="col-sm-10">
-                                            {{ $getRecord->job_id }}
+                                            {{ ($getRecord->get_job_single->job_title) ? $getRecord->get_job_single->job_title : '' }}
                                         </div>
                                     </div>
 

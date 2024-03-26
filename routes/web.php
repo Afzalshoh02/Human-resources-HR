@@ -3,7 +3,8 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\EmployeesController;
-use App\Http\Controllers\JobController;
+use App\Http\Controllers\Backend\JobController;
+use App\Http\Controllers\Backend\JobHistoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,6 +39,23 @@ Route::group(['middleware' => 'admin'], function () {
     //Job start
     Route::get('admin/jobs', [JobController::class, 'index']);
     Route::get('admin/jobs/add', [JobController::class, 'add']);
+    Route::post('admin/jobs/add', [JobController::class, 'add_post']);
+    Route::get('admin/jobs/view/{id}', [JobController::class, 'view']);
+    Route::get('admin/jobs/edit/{id}', [JobController::class, 'edit']);
+    Route::post('admin/jobs/edit/{id}', [JobController::class, 'edit_update']);
+    Route::get('admin/jobs/delete/{id}', [JobController::class, 'delete']);
+
+    //jobs Excel export
+    Route::get('admin/jobs_export', [JobController::class, 'job_export']);
+
+    //job history
+    Route::get('admin/job_history', [JobHistoryController::class, 'index']);
+    Route::get('admin/job_history/add', [JobHistoryController::class, 'add']);
+    Route::post('admin/job_history/add', [JobHistoryController::class, 'add_post']);
+    Route::get('admin/job_history/edit/{id}', [JobHistoryController::class, 'edit']);
+    Route::post('admin/job_history/edit/{id}', [JobHistoryController::class, 'edit_update']);
+    Route::get('admin/job_history/delete/{id}', [JobHistoryController::class, 'delete']);
+    Route::get('admin/job_history_export', [JobHistoryController::class, 'job_history_export']);
 });
 
 Route::get('logout', [AuthController::class, 'logout']);
