@@ -6,6 +6,7 @@ use App\Http\Controllers\Backend\EmployeesController;
 use App\Http\Controllers\Backend\JobController;
 use App\Http\Controllers\Backend\JobHistoryController;
 use App\Http\Controllers\JobGradesController;
+use App\Http\Controllers\RegionsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -60,6 +61,16 @@ Route::group(['middleware' => 'admin'], function () {
 
     //job grades
     Route::get('admin/job_grades', [JobGradesController::class, 'index']);
+    Route::get('admin/job_grades/add', [JobGradesController::class, 'add']);
+    Route::post('admin/job_grades/add', [JobGradesController::class, 'add_post']);
+    Route::get('admin/job_grades/edit/{id}', [JobGradesController::class, 'edit']);
+    Route::post('admin/job_grades/edit/{id}', [JobGradesController::class, 'edit_update']);
+    Route::get('admin/job_grades/delete/{id}', [JobGradesController::class, 'delete']);
+
+    //admin regions start
+    Route::get('admin/regions', [RegionsController::class, 'index']);
+    Route::get('admin/regions/add', [RegionsController::class, 'add']);
+    Route::post('admin/regions/add', [RegionsController::class, 'add_post']);
 });
 
 Route::get('logout', [AuthController::class, 'logout']);

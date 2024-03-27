@@ -82,10 +82,20 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ url('admin/job_grades') }}" class="nav-link">
+                    <a href="{{ url('admin/job_grades') }}" class="nav-link
+                       @if(\Illuminate\Support\Facades\Request::segment(2) == 'job_grades') active @endif">
                         <i class="nav-icon fa fa-star"></i>
                         <p>
                             Job Grades
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url('admin/regions') }}" class="nav-link
+                       @if(\Illuminate\Support\Facades\Request::segment(2) == 'regions') active @endif">
+                        <i class="nav-icon fa fa-asterisk"></i>
+                        <p>
+                            Regions
                         </p>
                     </a>
                 </li>
@@ -110,14 +120,6 @@
                         <i class="nav-icon fa fa-map-marked-alt"></i>
                         <p>
                             Location
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ url('admin/regions') }}" class="nav-link">
-                        <i class="nav-icon fa fa-asterisk"></i>
-                        <p>
-                            Regions
                         </p>
                     </a>
                 </li>
