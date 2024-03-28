@@ -48,12 +48,12 @@
 
                                         <div class="form-group col-md-3">
                                             <label>Created At</label>
-                                            <input type="date" name="created_at" class="form-control" value="{{ Request()->created_at }}" placeholder="Created At">
+                                            <input type="date" name="created_at" class="form-control" value="{{ Request()->created_at }}">
                                         </div>
 
                                         <div class="form-group col-md-3">
                                             <label>Updated At</label>
-                                            <input type="date" name="updated_at" class="form-control" value="{{ Request()->updated_at }}" placeholder="Updated At">
+                                            <input type="date" name="updated_at" class="form-control" value="{{ Request()->updated_at }}">
                                         </div>
 
                                         <div class="form-group col-md-2">

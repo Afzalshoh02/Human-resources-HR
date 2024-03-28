@@ -100,15 +100,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ url('admin/department') }}" class="nav-link">
-                        <i class="nav-icon fa fa-building"></i>
-                        <p>
-                            Department
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ url('admin/countries') }}" class="nav-link">
+                    <a href="{{ url('admin/countries') }}" class="nav-link
+                       @if(\Illuminate\Support\Facades\Request::segment(2) == 'countries') active @endif">
                         <i class="nav-icon fa fa-flag"></i>
                         <p>
                             Countries
@@ -116,10 +109,29 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ url('admin/location') }}" class="nav-link">
+                    <a href="{{ url('admin/location') }}" class="nav-link
+                       @if(\Illuminate\Support\Facades\Request::segment(2) == 'location') active @endif">
                         <i class="nav-icon fa fa-map-marked-alt"></i>
                         <p>
                             Location
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url('admin/department') }}" class="nav-link
+                       @if(\Illuminate\Support\Facades\Request::segment(2) == 'department') active @endif">
+                        <i class="nav-icon fa fa-building"></i>
+                        <p>
+                            Department
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url('admin/manager') }}" class="nav-link
+                       @if(\Illuminate\Support\Facades\Request::segment(2) == 'manager') active @endif">
+                        <i class="nav-icon fa fa-building"></i>
+                        <p>
+                            Manager
                         </p>
                     </a>
                 </li>
