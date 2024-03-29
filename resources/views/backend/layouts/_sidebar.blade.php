@@ -129,9 +129,18 @@
                 <li class="nav-item">
                     <a href="{{ url('admin/manager') }}" class="nav-link
                        @if(\Illuminate\Support\Facades\Request::segment(2) == 'manager') active @endif">
-                        <i class="nav-icon fa fa-building"></i>
+                        <i class="nav-icon fa fa-user"></i>
                         <p>
                             Manager
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url('admin/my_account') }}" class="nav-link
+                       @if(\Illuminate\Support\Facades\Request::segment(2) == 'my_account') active @endif">
+                        <i class="nav-icon fa fa-cog"></i>
+                        <p>
+                            My account
                         </p>
                     </a>
                 </li>

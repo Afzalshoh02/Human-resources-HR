@@ -73,8 +73,9 @@
                                         <div class="col-sm-10">
                                             <select class="form-control" name="department_id">
                                                 <option value="">Select Department Name </option>
-                                                <option {{ ($getRecord->department_id == 1) ? 'selected' : "" }} value="1">Developer Department</option>
-                                                <option {{ ($getRecord->department_id == 2) ? 'selected' : "" }} value="2">BDM Department</option>
+                                                @foreach($getDepartment as $value_d)
+                                                    <option {{ ($value_d->id == $getRecord->department_id) ? 'selected' : '' }} value="{{ $value_d->id }}">{{ $value_d->department_name }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>

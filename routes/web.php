@@ -10,6 +10,7 @@ use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\JobGradesController;
 use App\Http\Controllers\LocationsController;
 use App\Http\Controllers\ManagerController;
+use App\Http\Controllers\MyAccountController;
 use App\Http\Controllers\RegionsController;
 use Illuminate\Support\Facades\Route;
 
@@ -114,6 +115,10 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('admin/manager/edit/{id}', [ManagerController::class, 'edit_post']);
     Route::get('admin/manager/delete/{id}', [ManagerController::class, 'delete']);
     Route::get('admin/manager_export', [ManagerController::class, 'manager_export']);
+
+    //my account
+    Route::get('admin/my_account', [MyAccountController::class, 'my_account']);
+    Route::post('admin/my_account/update', [MyAccountController::class, 'edit_update']);
 });
 
 Route::get('logout', [AuthController::class, 'logout']);

@@ -18,9 +18,10 @@ class JobHistory extends Model
 //            ->orderByDesc('id')
 //            ->paginate(8);
 //        return $return;
-        $return = self::select('job_histories.*', 'users.name', 'job.job_title')
+        $return = self::select('job_histories.*', 'users.name', 'job.job_title', 'users.last_name', 'departments.department_name')
             ->join('users', 'users.id', '=', 'job_histories.employee_id')
             ->join('job', 'job.id', '=', 'job_histories.job_id')
+            ->join('departments', 'departments.id', '=', 'job_histories.department_id')
             ->orderByDesc('job_histories.id');
         if (!empty(Request::get('id'))) {
             $return = $return->where('job_histories.id', '=', Request::get('id'));
@@ -52,5 +53,10 @@ class JobHistory extends Model
     public function get_job_single()
     {
         return $this->belongsTo(Jobs::class, 'job_id');
+    }
+
+    public function get_departments_name_single()
+    {
+        return $this->belongsTo(Department::class, 'department_id');
     }
 }

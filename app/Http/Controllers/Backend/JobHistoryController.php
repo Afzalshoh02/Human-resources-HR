@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Exports\JobHistoryExport;
 use App\Http\Controllers\Controller;
+use App\Models\Department;
 use App\Models\JobHistory;
 use App\Models\Jobs;
 use App\Models\User;
@@ -21,6 +22,7 @@ class JobHistoryController extends Controller
     public function add()
     {
         $data['getEmployee'] = User::where('is_role', '=', 0)->get();
+        $data['getDepartment'] = Department::get();
         $data['getJobs'] = Jobs::get();
         return view('backend.job_history.add', $data);
     }
@@ -47,6 +49,7 @@ class JobHistoryController extends Controller
     {
         $data['getEmployee'] = User::where('is_role', '=', 0)->get();
         $data['getJobs'] = Jobs::get();
+        $data['getDepartment'] = Department::get();
         $data['getRecord'] = JobHistory::find($id);
         return view('backend.job_history.edit', $data);
     }
