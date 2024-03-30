@@ -42,10 +42,9 @@
                                         <div class="col-sm-10">
                                             <select class="form-control" name="manager_id" required>
                                                 <option value="">Select Manager Name </option>
-                                                {{--@foreach($getCountries as $countries)--}}
-                                                <option {{ ($getRecord->manager_id == 1) ? 'selected' : '' }} value="1">Vipul</option>
-                                                <option {{ ($getRecord->manager_id == 2) ? 'selected' : '' }} value="2">Dio</option>
-                                                {{--@endforeach--}}
+                                                @foreach($getManager as $value_m)
+                                                <option {{ ($value_m->id == $getRecord->manager_id) ? 'selected' : '' }} value="{{ $value_m->id }}">{{ $value_m->manager_name }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>

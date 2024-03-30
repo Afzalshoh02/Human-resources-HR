@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Exports\JobsExport;
-use App\Http\Controllers\Controller;
 use App\Models\Jobs;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;

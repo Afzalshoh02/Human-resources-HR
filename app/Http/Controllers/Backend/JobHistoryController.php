@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Exports\JobHistoryExport;
-use App\Http\Controllers\Controller;
 use App\Models\Department;
 use App\Models\JobHistory;
 use App\Models\Jobs;

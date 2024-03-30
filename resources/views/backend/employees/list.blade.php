@@ -73,6 +73,7 @@
                                            <td>First Name</td>
                                            <td>Last Name</td>
                                            <td>Email</td>
+                                           <td>Profile Image</td>
                                            <td>Is Role</td>
                                            <td>Action</td>
                                        </tr>
@@ -84,6 +85,14 @@
                                             <td>{{ $value->name }}</td>
                                             <td>{{ $value->last_name }}</td>
                                             <td>{{ $value->email }}</td>
+                                            <td>
+                                                @if(!empty($value->profile_image))
+                                                    @if(file_exists('upload/'.$value->profile_image))
+                                                        <img src="{{ url('upload/'.$value->profile_image) }}" style="height: 80px; width: 80px;">
+                                                    @endif
+                                                    <a href="{{ url('admin/employees_image/delete/'.$value->id) }} " onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger">Delete</a>
+                                                @endif
+                                            </td>
                                             <td>{{ !empty($value->is_role) ? "HR" : "Employees" }}</td>
                                             <td>
                                                 <a href="{{ url('admin/employees/view/'.$value->id) }}" class="btn btn-info">View</a>

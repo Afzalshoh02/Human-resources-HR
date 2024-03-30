@@ -6,12 +6,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">View Employees</h1>
+                        <h1 class="m-0">View PayRoll</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">View</a></li>
-                            <li class="breadcrumb-item active">Employees</li>
+                            <li class="breadcrumb-item active">PayRoll</li>
                         </ol>
                     </div>
                 </div>
@@ -24,7 +24,7 @@
                     <div class="col-md-12">
                         <div class="card card-info">
                             <div class="card-header">
-                                <h3 class="card-title">Add Employees</h3>
+                                <h3 class="card-title">Add Payroll</h3>
                             </div>
                             <form class="form-horizontal" method="post" enctype="multipart/form-data">
                                 <div class="card-body">
@@ -37,118 +37,115 @@
                                     </div>
 
                                     <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">First Name <span style="color: red;"> </span></label>
+                                        <label class="col-sm-2 col-form-label">Employees Name <span style="color: red;"> </span></label>
                                         <div class="col-sm-10">
-                                            {{ $getRecord->name }}
+                                            {{ !empty($getRecord->get_employee_name->name) ? $getRecord->get_employee_name->name : '' }}
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Last Name <span style="color: red;"> </span></label>
+                                        <label class="col-sm-2 col-form-label">Number Of Day Work <span style="color: red;"> </span></label>
                                         <div class="col-sm-10">
-                                            {{ $getRecord->last_name }}
+                                            {{ $getRecord->number_of_day_work }}
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Email ID <span style="color: red;"> </span></label>
+                                        <label class="col-sm-2 col-form-label">Bonus <span style="color: red;"> </span></label>
                                         <div class="col-sm-10">
-                                            {{ $getRecord->email }}
+                                            {{ $getRecord->bonus }}
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Phone Number <span style="color: red;"> </span></label>
+                                        <label class="col-sm-2 col-form-label">Overtime <span style="color: red;"> </span></label>
                                         <div class="col-sm-10">
-                                            {{ $getRecord->phone_number }}
+                                            {{ $getRecord->overtime }}
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Profile Image <span style="color: red;"> </span></label>
+                                        <label class="col-sm-2 col-form-label">Gross Salary <span style="color: red;"> </span></label>
                                         <div class="col-sm-10">
-                                            @if(!empty($getRecord->profile_image))
-                                                @if(file_exists('upload/'.$getRecord->profile_image))
-                                                    <img src="{{ url('upload/'.$getRecord->profile_image) }}" style="height: 80px; width: 80px;">
-                                                @endif
-                                            @endif
+                                            {{ $getRecord->gross_salary }}
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Hire Date <span style="color: red;"> </span></label>
+                                        <label class="col-sm-2 col-form-label">Cash Advance <span style="color: red;"> </span></label>
                                         <div class="col-sm-10">
-                                            {{ date('d-m-Y', strtotime($getRecord->hire_date)) }}
+                                            {{ $getRecord->cash_advance }}
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Job ID <span style="color: red;"> </span></label>
+                                        <label class="col-sm-2 col-form-label">Late Hours <span style="color: red;"> </span></label>
                                         <div class="col-sm-10">
-                                            {{ ($getRecord->get_job_single->job_title) ? $getRecord->get_job_single->job_title : '' }}
+                                            {{ ($getRecord->late_hours) }}
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Salary <span style="color: red;"> </span></label>
+                                        <label class="col-sm-2 col-form-label">Absent Days <span style="color: red;"> </span></label>
                                         <div class="col-sm-10">
-                                            {{ $getRecord->salary }}
+                                            {{ $getRecord->absent_days }}
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Commission PCT <span style="color: red;"> </span></label>
+                                        <label class="col-sm-2 col-form-label">SSS Contribution <span style="color: red;"> </span></label>
                                         <div class="col-sm-10">
-                                            {{ $getRecord->commission_pct }}
+                                            {{ $getRecord->sss_contribution }}
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Manager Name <span style="color: red;"> </span></label>
+                                        <label class="col-sm-2 col-form-label">Philhealth <span style="color: red;"> </span></label>
                                         <div class="col-sm-10">
-                                            {{ !empty($getRecord->get_manager_name_single->manager_name) ? $getRecord->get_manager_name_single->manager_name : '' }}
+                                            {{ !empty($getRecord->philhealth) }}
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Department Name <span style="color: red;"> </span></label>
+                                        <label class="col-sm-2 col-form-label">Total deduction <span style="color: red;"> </span></label>
                                         <div class="col-sm-10">
-                                            {{ !empty($getRecord->get_departments_name_single->department_name) ? $getRecord->get_departments_name_single->department_name : '' }}
+                                            {{ !empty($getRecord->total_deduction) }}
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Position Name <span style="color: red;"> </span></label>
+                                        <label class="col-sm-2 col-form-label">Net Pay <span style="color: red;"> </span></label>
                                         <div class="col-sm-10">
-                                            {{ !empty($getRecord->get_position_name_single->position_name) ? $getRecord->get_position_name_single->position_name : '' }}
+                                            {{ $getRecord->netpay }}
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Created Date <span style="color: red;"> </span></label>
+                                        <label class="col-sm-2 col-form-label">Payroll Monthly <span style="color: red;"> </span></label>
+                                        <div class="col-sm-10">
+                                            {{ $getRecord->payroll_monthly }}
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Created At <span style="color: red;"> </span></label>
                                         <div class="col-sm-10">
                                             {{ date('d-m-Y H:i A', strtotime($getRecord->created_at)) }}
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Update Date <span style="color: red;"> </span></label>
+                                        <label class="col-sm-2 col-form-label">Updated At <span style="color: red;"> </span></label>
                                         <div class="col-sm-10">
                                             {{ date('d-m-Y H:i A', strtotime($getRecord->updated_at)) }}
                                         </div>
                                     </div>
 
-                                    <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">IS Role <span style="color: red;"> </span></label>
-                                        <div class="col-sm-10">
-                                            {{ !empty($getRecord->is_role) ? "HR" : "Employees" }}
-                                        </div>
-                                    </div>
 
                                 </div>
 
                                 <div class="card-footer">
-                                    <a href="{{ url('admin/employees') }}" class="btn btn-default">Back</a>
+                                    <a href="{{ url('admin/payroll') }}" class="btn btn-default">Back</a>
                                 </div>
 
                             </form>

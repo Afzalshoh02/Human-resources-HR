@@ -26,7 +26,7 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="{{ url('admin/dashboard') }}" class="brand-link">
         <img src="/backend/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">HR</span>
     </a>
@@ -36,7 +36,9 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="/backend/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                @if(\Illuminate\Support\Facades\Auth::user()->profile_image)
+                    <img src="{{ url('upload/'.\Illuminate\Support\Facades\Auth::user()->profile_image) }}" class="img-circle elevation-2" alt="User Image">
+                @endif
             </div>
             <div class="info">
                 <a href="" class="d-block">{{ \Illuminate\Support\Facades\Auth::user()->name }}</a>
@@ -132,6 +134,24 @@
                         <i class="nav-icon fa fa-user"></i>
                         <p>
                             Manager
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url('admin/payroll') }}" class="nav-link
+                       @if(\Illuminate\Support\Facades\Request::segment(2) == 'payroll') active @endif">
+                        <i class="nav-icon fa fa-credit-card"></i>
+                        <p>
+                            Pay Roll
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url('admin/position') }}" class="nav-link
+                       @if(\Illuminate\Support\Facades\Request::segment(2) == 'position') active @endif">
+                        <i class="nav-icon fa fa-user"></i>
+                        <p>
+                            Position
                         </p>
                     </a>
                 </li>

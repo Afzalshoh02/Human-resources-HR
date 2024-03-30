@@ -17,8 +17,9 @@ class Department extends Model
 //        $return = self::select('departments.*')
 //            ->orderByDesc('id')
 //            ->paginate(8);
-        $return = self::select('departments.*', 'locations.street_address')
+        $return = self::select('departments.*', 'locations.street_address', 'managers.manager_name')
             ->join('locations', 'locations.id', '=', 'departments.locations_id')
+            ->join('managers', 'managers.id', 'departments.manager_id')
             ->orderByDesc('id');
         if (!empty(Request::get('id'))) {
             $return = $return->where('departments.id', '=', Request::get('id'));

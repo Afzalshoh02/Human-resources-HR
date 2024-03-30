@@ -69,3 +69,4 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 2. php artisan migrate
 3. composer require maatwebsite/excel --no install
 4. export jobs excel
+5. is_role: 1:- HR, 2:- Employee

@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
 use App\Exports\DepartmentExport;
 use App\Models\Department;
 use App\Models\Locations;
+use App\Models\Manager;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -19,6 +20,7 @@ class DepartmentController extends Controller
     public function add(Request $request)
     {
         $data['getLocation'] = Locations::get();
+        $data['getManager'] = Manager::get();
         return view('backend.department.add', $data);
     }
 
@@ -39,6 +41,7 @@ class DepartmentController extends Controller
 
     public function edit($id, Request $request)
     {
+        $data['getManager'] = Manager::get();
         $data['getRecord'] = Department::find($id);
         $data['getLocation'] = Locations::get();
         return view('backend.department.edit', $data);

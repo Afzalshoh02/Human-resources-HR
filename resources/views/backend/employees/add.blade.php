@@ -53,10 +53,25 @@
                                     </div>
 
                                     <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Password <span style="color: red;"> *</span></label>
+                                        <div class="col-sm-10">
+                                            <input type="password" value="" name="password" class="form-control" required placeholder="Enter Password">
+                                        </div>
+                                        <span style="color: red">{{ $errors->first('password') }}</span>
+                                    </div>
+
+                                    <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Phone Number <span style="color: red;"> </span></label>
                                         <div class="col-sm-10">
                                             <input type="number" value="{{ old('phone_number') }}" name="phone_number" class="form-control" placeholder="Enter Phone Number">
                                             <span style="color: red">{{ $errors->first('phone_number') }}</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Profile Image <span style="color: red;"> </span></label>
+                                        <div class="col-sm-10">
+                                            <input type="file" name="profile_image" class="form-control" >
                                         </div>
                                     </div>
 
@@ -114,6 +129,18 @@
                                                 <option value="">Select Department Name </option>
                                                 @foreach($getDepartment as $value_d)
                                                     <option value="{{ $value_d->id }}">{{ $value_d->department_name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Position Name <span style="color: red;"> *</span></label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control" name="position_id" required>
+                                                <option value="">Select Position Name </option>
+                                                @foreach($getPosition as $value_p)
+                                                    <option value="{{ $value_p->id }}">{{ $value_p->position_name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>

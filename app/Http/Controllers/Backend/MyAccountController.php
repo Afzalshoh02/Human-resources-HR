@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class MyAccountController extends Controller
 {
@@ -24,6 +25,16 @@ class MyAccountController extends Controller
         $user->email = trim($request->email);
         if (!empty($request->password)) {
             $user->password = trim($request->password);
+        }
+        if (!empty($request->file('profile_image'))) {
+            if (!empty($user->profile_image) && file_exists('upload/'.$user->profile_image)) {
+                unlink('upload/'.$user->profile_image);
+            }
+            $file = $request->file('profile_image');
+            $randomStr = Str::random(30);
+            $fileName = $randomStr . '.' . $file->getClientOriginalExtension();
+            $file->move('upload/', $fileName);
+            $user->profile_image = $fileName;
         }
         $user->save();
         return redirect('admin/my_account')->with('success', "My Account Successfully Update !!!");

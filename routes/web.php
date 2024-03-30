@@ -1,17 +1,19 @@
 <?php
 
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Backend\AuthController;
+use App\Http\Controllers\Backend\CountriesController;
 use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Backend\DepartmentController;
 use App\Http\Controllers\Backend\EmployeesController;
 use App\Http\Controllers\Backend\JobController;
+use App\Http\Controllers\Backend\JobGradesController;
 use App\Http\Controllers\Backend\JobHistoryController;
-use App\Http\Controllers\CountriesController;
-use App\Http\Controllers\DepartmentController;
-use App\Http\Controllers\JobGradesController;
-use App\Http\Controllers\LocationsController;
-use App\Http\Controllers\ManagerController;
-use App\Http\Controllers\MyAccountController;
-use App\Http\Controllers\RegionsController;
+use App\Http\Controllers\Backend\LocationsController;
+use App\Http\Controllers\Backend\ManagerController;
+use App\Http\Controllers\Backend\MyAccountController;
+use App\Http\Controllers\Backend\PayrollController;
+use App\Http\Controllers\Backend\RegionsController;
+use App\Http\Controllers\Backend\PositionsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,6 +44,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('admin/employees/edit/{id}', [EmployeesController::class, 'edit']);
     Route::post('admin/employees/edit/{id}', [EmployeesController::class, 'edit_update']);
     Route::get('admin/employees/delete/{id}', [EmployeesController::class, 'delete']);
+    Route::get('admin/employees_image/delete/{id}', [EmployeesController::class, 'image_delete']);
 
     //Job start
     Route::get('admin/jobs', [JobController::class, 'index']);
@@ -119,6 +122,27 @@ Route::group(['middleware' => 'admin'], function () {
     //my account
     Route::get('admin/my_account', [MyAccountController::class, 'my_account']);
     Route::post('admin/my_account/update', [MyAccountController::class, 'edit_update']);
-});
 
+    //Pay Roll
+    Route::get('admin/payroll', [PayrollController::class, 'index']);
+    Route::get('admin/payroll/add', [PayrollController::class, 'add']);
+    Route::post('admin/payroll/add', [PayrollController::class, 'insert_payroll']);
+    Route::get('admin/payroll/view/{id}', [PayrollController::class, 'view']);
+    Route::get('admin/payroll/edit/{id}', [PayrollController::class, 'edit']);
+    Route::post('admin/payroll/edit/{id}', [PayrollController::class, 'update']);
+    Route::get('admin/payroll/delete/{id}', [PayrollController::class, 'delete']);
+    Route::get('admin/payroll_export', [PayrollController::class, 'payroll_export']);
+
+    // Position
+    Route::get('admin/position', [PositionsController::class, 'index']);
+    Route::get('admin/position/add', [PositionsController::class, 'add']);
+    Route::post('admin/position/add', [PositionsController::class, 'insert_post']);
+    Route::get('admin/position/edit/{id}', [PositionsController::class, 'edit']);
+    Route::post('admin/position/edit/{id}', [PositionsController::class, 'edit_update']);
+    Route::get('admin/position/delete/{id}', [PositionsController::class, 'delete']);
+    Route::get('admin/position_export', [PositionsController::class, 'position_export']);
+});
+Route::group(['middleware', 'employee'], function () {
+    Route::get('employees/dashboard', [DashboardController::class, 'dashboard']);
+});
 Route::get('logout', [AuthController::class, 'logout']);

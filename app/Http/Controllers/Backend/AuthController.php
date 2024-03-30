@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -58,6 +58,8 @@ class AuthController extends Controller
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password], true)) {
             if (Auth::User()->is_role == '1') {
                 return redirect()->intended('admin/dashboard');
+            } else if (Auth::user()->is_role == '0') {
+                return redirect()->intended('employees/dashboard');
             } else {
                 return redirect('/')->with('error', "No HR Availbles.. please check");
             }
