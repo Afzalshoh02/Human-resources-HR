@@ -1,3 +1,5 @@
+# Human-resources---HR
+
 Проект системы управления персоналом - это веб-приложение на базе баз данных PHP, Laravel и MySQL, это комплексное решение для управления персоналом компании. Здесь вы можете создать отдел, назначение, сотрудника и т.д.
 
 Функции управления персоналом:
@@ -42,10 +44,8 @@
 - Проверьте установку Laravel.
 - Запустите сервер.
 - Запустите проект в своем браузере.
-# Human-resources---HR
-1. composer install -- update
+
+
+1. composer install 
+2. composer update
 2. php artisan migrate
-3. composer require maatwebsite/excel --no install
-4. export jobs excel
-5. is_role: 1:- HR, 2:- Employee
-6. mailtrap register 
