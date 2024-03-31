@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Human Resources | Forgot Password</title>
-
+    <link rel="icon" type="image/x-icon" href="{{ url('/backend/dist/assets/img/AdminLTELogo.png') }}" />
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
@@ -21,18 +21,21 @@
     </div>
     <!-- /.login-logo -->
     <div class="card">
+        @include('_message')
         <div class="card-body login-card-body">
             <p class="login-box-msg">Forgot Password</p>
 
-            <form action="" method="post">
+            <form action="{{ url('forgot_password/post') }}" method="post">
+                {{ csrf_field() }}
                 <div class="input-group mb-3">
-                    <input type="email" class="form-control" placeholder="Email">
+                    <input type="email" class="form-control" placeholder="Email" name="email">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-envelope"></span>
                         </div>
                     </div>
                 </div>
+                <span style="color: red">{{ $errors->first('email') }}</span>
                 <div class="row">
                     <div class="col-8">
                         <div class="icheck-primary">

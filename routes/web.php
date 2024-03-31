@@ -14,6 +14,7 @@ use App\Http\Controllers\Backend\MyAccountController;
 use App\Http\Controllers\Backend\PayrollController;
 use App\Http\Controllers\Backend\RegionsController;
 use App\Http\Controllers\Backend\PositionsController;
+use App\Http\Controllers\InterviewController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,6 +30,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [AuthController::class, 'index']);
 Route::get('forgot-password', [AuthController::class, 'forgot_password']);
+Route::post('forgot-password/post', [AuthController::class, 'forgot_password_post']);
 Route::get('register', [AuthController::class, 'register']);
 Route::post('register_post', [AuthController::class, 'register_post']);
 Route::post('checkemail', [AuthController::class, 'CheckEmail']);
@@ -144,5 +146,8 @@ Route::group(['middleware' => 'admin'], function () {
 });
 Route::group(['middleware', 'employee'], function () {
     Route::get('employees/dashboard', [DashboardController::class, 'dashboard']);
+    Route::get('employees/my_account', [MyAccountController::class, 'employees_my_account']);
+    Route::post('employees/my_account/update', [MyAccountController::class, 'employees_my_account_update']);
+    Route::get('admin/interview', [InterviewController::class, 'Interview']);
 });
 Route::get('logout', [AuthController::class, 'logout']);

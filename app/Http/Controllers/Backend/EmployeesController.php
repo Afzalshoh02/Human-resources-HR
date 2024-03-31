@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Mail\EmployeeNewCreateEmail;
 use App\Models\Department;
 use App\Models\Jobs;
 use App\Models\Manager;
@@ -9,6 +10,7 @@ use App\Models\Positions;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
 class EmployeesController extends Controller
@@ -49,7 +51,7 @@ class EmployeesController extends Controller
         ]);
         $user = new User();
         $user->name = trim($request->name);
-        $user->password = Hash::make($request->password);
+//        $user->password = Hash::make($request->password);
         $user->last_name = trim($request->last_name);
         $user->email = trim($request->email);
         $user->phone_number = trim($request->phone_number);
@@ -61,6 +63,8 @@ class EmployeesController extends Controller
         $user->department_id = trim($request->department_id);
         $user->position_id = trim($request->position_id);
         $user->is_role = 0; //0 - Employees
+        $random_password = $request->password;
+        $user->password = Hash::make($random_password);
         if (!empty($request->file('profile_image'))) {
             $file = $request->file('profile_image');
             $randomStr = Str::random(30);
@@ -69,6 +73,8 @@ class EmployeesController extends Controller
             $user->profile_image = $fileName;
         }
         $user->save();
+        $user->random_password = $random_password;
+        Mail::to($user->email)->send(new EmployeeNewCreateEmail($user));
         return redirect('admin/employees')->with('success', "Employees successfully register.");
     }
 
@@ -106,6 +112,7 @@ class EmployeesController extends Controller
         $user->department_id = trim($request->department_id);
         $user->position_id = trim($request->position_id);
         $user->is_role = 0; //0 - Employees
+        $user->interview = $request->interview;
         if (!empty($request->password)) {
             $user->password = Hash::make($request->password);
         }

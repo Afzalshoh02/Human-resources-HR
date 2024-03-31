@@ -47,6 +47,9 @@
 
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
+                @if(\Illuminate\Support\Facades\Auth::user()->is_role == '1')
+
                 <li class="nav-item">
                     <a href="{{ url('admin/dashboard') }}" class="nav-link
                     @if(\Illuminate\Support\Facades\Request::segment(2) == 'dashboard') active @endif">
@@ -164,6 +167,39 @@
                         </p>
                     </a>
                 </li>
+
+                @endif
+
+                @if(\Illuminate\Support\Facades\Auth::user()->is_role == '0')
+                        <li class="nav-item">
+                            <a href="{{ url('employees/dashboard') }}" class="nav-link
+                            @if(\Illuminate\Support\Facades\Request::segment(2) == 'dashboard') active @endif">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>
+                                    Dashboard
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('admin/interview') }}" class="nav-link
+                                @if(\Illuminate\Support\Facades\Request::segment(2) == 'interview') active @endif">
+                                <i class="nav-icon fa fa-user"></i>
+                                <p>
+                                    Interview
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                        <a href="{{ url('employees/my_account') }}" class="nav-link
+                            @if(\Illuminate\Support\Facades\Request::segment(2) == 'my_account') active @endif">
+                            <i class="nav-icon fa fa-cog"></i>
+                            <p>
+                                My account
+                            </p>
+                            </a>
+                        </li>
+                @endif
+
             </ul>
         </nav>
     </div>

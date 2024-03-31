@@ -21,7 +21,6 @@ class DashboardController extends Controller
     {
         if (Auth::user()->is_role == 1) {
 
-
             $data['getEmployeeCount'] = User::count();
             $data['getHRCount'] = User::where('is_role', '=', 1)->count();
             $data['getEMCount'] = User::where('is_role', '=', 0)->count();
@@ -37,6 +36,7 @@ class DashboardController extends Controller
             $data['getPayrollCount'] = Payroll::count();
             $data['getPositionCount'] = Positions::count();
             return view('backend.dashboard.list', $data);
+
         } else if (Auth::user()->is_role == 0) {
             return view('backend.employee.dashboard.list');
         }

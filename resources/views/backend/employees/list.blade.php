@@ -75,6 +75,7 @@
                                            <td>Email</td>
                                            <td>Profile Image</td>
                                            <td>Is Role</td>
+                                           <td>Interview</td>
                                            <td>Action</td>
                                        </tr>
                                    </thead>
@@ -94,6 +95,15 @@
                                                 @endif
                                             </td>
                                             <td>{{ !empty($value->is_role) ? "HR" : "Employees" }}</td>
+                                            <td>
+                                                @if($value->interview == '0')
+                                                    Cancel
+                                                @elseif($value->interview == '1')
+                                                    Pending
+                                                @elseif($value->interview == '2')
+                                                    Completed
+                                                @endif
+                                            </td>
                                             <td>
                                                 <a href="{{ url('admin/employees/view/'.$value->id) }}" class="btn btn-info">View</a>
                                                 <a href="{{ url('admin/employees/edit/'.$value->id) }}" class="btn btn-primary">Edit</a>
