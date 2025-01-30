@@ -46,7 +46,11 @@
 - Запустите проект в своем браузере.
 - Для отправки почты используете https://mailtrap.io/
 
-1. composer install 
-2. composer update
-2. php artisan migrate
-3. php artisan serve
+1. composer install или composer update или composer install --ignore-platform-reqs
+2. cp .env.example .env
+3. php artisan migrate --seed /Yes
+4. php artisan key:generate
+5. php artisan serve
+
+Login\Email: admin@example.com
+Password: password
